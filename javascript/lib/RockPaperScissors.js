@@ -12,9 +12,26 @@ function Game(player1, player2) {
 };
 
 var PAIRS = {
-  'rock':     { 'beats': 'scissors' },
-  'paper':    { 'beats': 'rock' },
-  'scissors': { 'beats': 'paper' }
+  paper       : { 
+    rock      : 'covers', 
+    spock     : 'disproves'     
+  },
+  rock        : { 
+    scissors  : 'crushes', 
+    lizard    : 'crushes'  
+  },
+  scissors    : { 
+    paper     : 'cut',  
+    lizard    : 'decapitate'    
+  },
+  lizard      : { 
+    spock     : 'poisons',  
+    paper     : 'eats'     
+  },  
+  spock       : { 
+    scissors  : 'smashes', 
+    rock      : 'vaporizes'    
+  }
 };
 
 
@@ -22,7 +39,8 @@ Game.prototype.winner = function() {
     if(this.same_pick()){
       return null;
     }
-    else if(PAIRS[this.player1.pick]['beats'] === this.player2.pick){
+
+    if(PAIRS[this.player1.pick][this.player2.pick]){
       return this.player1;
     }
     else {
