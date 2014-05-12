@@ -11,6 +11,7 @@ function Game(player1, player2) {
   this.player2 = player2;
 };
 
+
 var PAIRS = {
   paper       : { 
     rock      : 'covers', 
@@ -36,19 +37,33 @@ var PAIRS = {
 
 
 Game.prototype.winner = function() {
-    if(this.same_pick()){
+    if(this._samePick()){
       return null;
     }
 
     if(PAIRS[this.player1.pick][this.player2.pick]){
+      winner = this.player1;
+      loser = this.player2;
       return this.player1;
     }
     else {
+      winner = this.player2;
+      loser = this.player1;
       return this.player2;
     }   
 };
 
-Game.prototype.same_pick = function(){
+Game.prototype._samePick = function() {
   return this.player1.pick === this.player2.pick;
 };
+
+Game.prototype.result = function() {
+  console.log(winner);
+  return winner.name + "'s " + winner.pick + " " + PAIRS[winner.pick][loser.pick] + " " + loser.name + "'s " + loser.pick;
+};
   
+
+
+
+
+

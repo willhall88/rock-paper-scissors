@@ -211,4 +211,23 @@ describe("Rock-Paper-Scissors", function() {
 
   });
 
+  describe('result', function() {
+    it('should return the winners name, pick, verb, losers name, pick', function() {   
+        player1.picks('spock');
+        player2.picks('rock');
+        game.winner();
+        expect(game.result()).toBe("Will's spock vaporizes Robin's rock");
+    });
+
+    it('should return the winners name, pick, verb, losers name, pick', function() {
+      player2.picks('rock');
+      player1.picks('scissors');
+      game.winner();
+      expect(game.result()).toBe("Robin's rock crushes Will's scissors");
+    });
+
+
+  });
+
 });
+
