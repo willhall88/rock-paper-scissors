@@ -11,8 +11,8 @@ function Game(player1, player2) {
   this.player2 = player2;
 };
 
-
-var PAIRS = {
+Game.prototype.PAIRS = {
+  
   paper       : { 
     rock      : 'covers', 
     spock     : 'disproves'     
@@ -33,6 +33,7 @@ var PAIRS = {
     scissors  : 'smashes', 
     rock      : 'vaporizes'    
   }
+
 };
 
 
@@ -41,7 +42,7 @@ Game.prototype.winner = function() {
       return null;
     }
 
-    if(PAIRS[this.player1.pick][this.player2.pick]){
+    if(this.PAIRS[this.player1.pick][this.player2.pick]){
       winner = this.player1;
       loser = this.player2;
       return this.player1;
@@ -59,7 +60,7 @@ Game.prototype._samePick = function() {
 
 Game.prototype.result = function() {
   console.log(winner);
-  return winner.name + "'s " + winner.pick + " " + PAIRS[winner.pick][loser.pick] + " " + loser.name + "'s " + loser.pick;
+  return winner.name + "'s " + winner.pick + " " + this.PAIRS[winner.pick][loser.pick] + " " + loser.name + "'s " + loser.pick;
 };
   
 
