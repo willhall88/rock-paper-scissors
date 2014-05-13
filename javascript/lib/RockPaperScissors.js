@@ -43,24 +43,40 @@ Game.prototype.winner = function() {
     }
 
     if(this.PAIRS[this.player1.pick][this.player2.pick]){
-      winner = this.player1;
-      loser = this.player2;
+      // winner = this.player1;
+      // loser = this.player2;
       return this.player1;
     }
     else {
-      winner = this.player2;
-      loser = this.player1;
+      // winner = this.player2;
+      // loser = this.player1;
       return this.player2;
     }   
 };
+
+Game.prototype.loser = function() {
+  return (this.winner() === this.player1 ? this.player2 : this.player1)
+}
 
 Game.prototype._samePick = function() {
   return this.player1.pick === this.player2.pick;
 };
 
+
 Game.prototype.result = function() {
-  console.log(winner);
-  return winner.name + "'s " + winner.pick + " " + this.PAIRS[winner.pick][loser.pick] + " " + loser.name + "'s " + loser.pick;
+  console.log(this.winner());
+  var message;
+
+  if(this.winner()) {
+    message = [this.winner().name, this.winner().pick, 
+    this.PAIRS[this.winner().pick][this.loser().pick],
+    this.loser().name, this.loser().pick].join(' ');
+  } else {
+    message = 'Draw';
+  }
+
+  return message;
+  // return winner() + "'s " + winner().pick + " " + this.PAIRS[winner().pick][loser().pick] + " " + loser().name + "'s " + loser().pick;
 };
   
 
