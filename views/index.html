@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Rock Paper Scissors Lizard Spock</title>
+    <link href="../public/stylesheets/application.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+
+    <h1>Rock Paper Scissors Lizard Spock</h1>
+    <section class='choices'>
+      <img src="../images/rock.png" data-pick='rock'>
+      <img src="../images/paper.png"data-pick='paper'>
+      <img src="../images/scissors.png"data-pick='scissors'>
+      <img src="../images/lizard.png"data-pick='lizard'>
+      <img src="../images/spock.png"data-pick='spock'>
+    </section>
+    <section>
+      <ul id='results'>
+        
+      </ul>
+    </section>
+    </div>
+
+    <script src="../javascript/lib/player.js"></script>
+    <script src="../javascript/lib/RockPaperScissors.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      var me = new Player('My');
+      var you = new Player('Your');
+      var game = new Game(me, you)
+
+      $('.choices img').on('click', function(){
+        you.picks($(this).data('pick'));
+        me.picks(game.randomChoice());
+         $('<li>' + game.result() + '</li>').fadeIn("slow").prependTo('#results');
+         $("#results li").filter(function(index) {
+            return index === 5}).fadeOut("slow" , function(){
+            this.remove();
+         });
+      })
+    });
+    </script>
+
+
+
+  </body>
+</html>
