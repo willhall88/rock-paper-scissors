@@ -229,5 +229,47 @@ describe("Rock-Paper-Scissors", function() {
 
   });
 
+  describe('randomization', function(){
+    it('should randomly select the computers choice', function(){
+      spyOn(game, 'randomChoice').andReturn('scissors');
+      player1.picks('scissors');
+      player2.picks(game.randomChoice());
+      expect(game.result()).toBe("Draw")
+
+    });
+  });
+
 });
 
+
+// describe("A spy, when faking a return value", function() {
+//   var foo, bar, fetchedBar;
+
+//   beforeEach(function() {
+//     foo = {
+//       setBar: function(value) {
+//         bar = value;
+//       },
+//       getBar: function() {
+//         return bar;
+//       }
+//     };
+
+//     spyOn(foo, 'getBar').andReturn(387);
+
+//     foo.setBar(123);
+//     fetchedBar = foo.getBar();
+//   });
+
+//   it("tracks that the spy was called", function() {
+//     expect(foo.getBar).toHaveBeenCalled();
+//   });
+
+//   it("should not affect other functions", function() {
+//     expect(bar).toEqual(123);
+//   });
+
+//   it("when called returns the requested value", function() {
+//     expect(fetchedBar).toEqual(745);
+//   });
+// });

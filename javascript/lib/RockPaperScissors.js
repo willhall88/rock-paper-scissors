@@ -35,13 +35,9 @@ Game.prototype.winner = function() {
     }
 
     if(this.PAIRS[this.player1.pick][this.player2.pick]){
-      // winner = this.player1;
-      // loser = this.player2;
       return this.player1;
     }
     else {
-      // winner = this.player2;
-      // loser = this.player1;
       return this.player2;
     }   
 };
@@ -56,9 +52,8 @@ Game.prototype._samePick = function() {
 
 
 Game.prototype.result = function() {
-  console.log(this.winner());
+  // console.log(this.PAIRS(1);
   var message;
-
   if(this.winner()) {
     message = [this.winner().name, this.winner().pick, 
     this.PAIRS[this.winner().pick][this.loser().pick],
@@ -66,10 +61,30 @@ Game.prototype.result = function() {
   } else {
     message = 'Draw';
   }
-
   return message;
 };
   
+Game.prototype.randomChoice = function() {
+  options = ['rock', 'paper', 'scissors', 'lizard', 'spock']
+  randIndex = Math.floor(Math.random()*5);
+  return options[randIndex];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
